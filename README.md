@@ -2,6 +2,7 @@
 
 Welcome to **Economics 607: Econometrics III** (Spring 2021) at the University of Oregon (taught by Dr. [Ed Rubin](https://edrub.in)).
 
+```
          _             _              _        _            _          
         /\ \         /\ \           /\ \     / /\         / /\         
        /  \ \       /  \ \         /  \ \   / /  \       / /  \        
@@ -13,7 +14,8 @@ Welcome to **Economics 607: Econometrics III** (Spring 2021) at the University o
  / / /______  / / /________  / / /__\ \ \  \ \ \___\ \ \        \ \ \  
 / / /_______\/ / /_________\/ / /____\ \ \  \ \/____\ \ \        \ \ \ 
 \/__________/\/____________/\/__________\/   \_________\/         \_\/ 
-                                                                       
+
+```                                                                       
 
 ## Schedule
 
