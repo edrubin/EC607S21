@@ -3,17 +3,16 @@
 Welcome to **Economics 607: Econometrics III** (Spring 2021) at the University of Oregon (taught by Dr. [Ed Rubin](https://edrub.in)).
 
 ```
-         _             _              _        _            _          
-        /\ \         /\ \           /\ \     / /\         / /\         
-       /  \ \       /  \ \         /  \ \   / /  \       / /  \        
-      / /\ \ \     / /\ \ \       / /\ \_\ / / /\ \     / / /\ \       
-     / / /\ \_\   / / /\ \ \     / / /\/_// / /\ \ \   / / /\ \ \      
-    / /_/_ \/_/  / / /  \ \_\   / /_/_   /_/ /  \ \ \ /_/ /  \ \ \     
-   / /____/\    / / /    \/_/  / /___/\  \ \ \   \ \ \\_\/    \ \ \    
-  / /\____\/   / / /          / /\__ \ \  \ \ \   \ \ \        \ \ \   
- / / /______  / / /________  / / /__\ \ \  \ \ \___\ \ \        \ \ \  
-/ / /_______\/ / /_________\/ / /____\ \ \  \ \/____\ \ \        \ \ \ 
-\/__________/\/____________/\/__________\/   \_________\/         \_\/ 
+
+__/\\\\\\\\\\\\\\\________/\\\\\\\\\____________/\\\\\_____/\\\\\\\_____/\\\\\\\\\\\\\\\_        
+ _\/\\\///////////______/\\\////////_________/\\\\////____/\\\/////\\\__\/////////////\\\_       
+  _\/\\\_______________/\\\/_______________/\\\///________/\\\____\//\\\____________/\\\/__      
+   _\/\\\\\\\\\\\______/\\\_______________/\\\\\\\\\\\____\/\\\_____\/\\\__________/\\\/____     
+    _\/\\\///////______\/\\\______________/\\\\///////\\\__\/\\\_____\/\\\________/\\\/______    
+     _\/\\\_____________\//\\\____________\/\\\______\//\\\_\/\\\_____\/\\\______/\\\/________   
+      _\/\\\______________\///\\\__________\//\\\______/\\\__\//\\\____/\\\_____/\\\/__________  
+       _\/\\\\\\\\\\\\\\\____\////\\\\\\\\\__\///\\\\\\\\\/____\///\\\\\\\/____/\\\/____________ 
+        _\///////////////________\/////////_____\/////////________\///////_____\///______________
 
 ```                                                                       
 
@@ -25,8 +24,13 @@ Welcome to **Economics 607: Econometrics III** (Spring 2021) at the University o
 
 **Office hours**
 
-- **[Ed Rubin](https://edrub.in)** TBD, Zoom ([See Canvas for link](https://canvas.uoregon.edu/courses/176672))
-- **[Philip Economides](https://sites.google.com/tcd.ie/philip-economides/home)** TBD, Zoom ([See Canvas for link](https://canvas.uoregon.edu/courses/176672))
+**[Ed Rubin](https://edrub.in)** TBD, Zoom ([See Canvas for link](https://canvas.uoregon.edu/courses/176672))
+- TBD
+- TBD
+
+**[Philip Economides](https://sites.google.com/tcd.ie/philip-economides/home)** ([See Canvas for link](https://canvas.uoregon.edu/courses/176672))
+- Fridays: 1:30pm–2:30pm, Zoom 
+- TBD
 
 ## Books
 
@@ -84,7 +88,6 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 
 1. Neyman potential outcomes framework (Rubin causal model)
 1. Selection bias and experimental variation in treatment
-1. R: Object types/classes and package management.
 
 **Note formats:** [.html](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/02-the-ideal/02-the-ideal.html) |
 [.pdf](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/02-the-ideal/02-the-ideal.pdf) |
@@ -175,8 +178,13 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 
 **Readings:** [Introduction to statistical learning](http://faculty.marshall.usc.edu/gareth-james/ISL/)
 
-
 ## Lab slides
+
+[Philip Economides](https://sites.google.com/tcd.ie/philip-economides/home) will walk you through R and applications of the course content. You *should attend*.
+
+Links coming.
+
+## Previous lab slides
 
 *Note:* From previous iteration of our class.
 
