@@ -179,7 +179,7 @@ What's so great about linear regression and OLS?
 ### Upcoming
 
 .hi-slate[Assignment].sub[1] Custom OLS function fun.
-.hi-slate[Assignment].sub[2] First step of project proposal.
+<br>.hi-slate[Assignment].sub[2] First step of project proposal.
 
 ---
 layout: true
