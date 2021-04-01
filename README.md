@@ -4,16 +4,15 @@ Welcome to **Economics 607: Econometrics III** (Spring 2021) at the University o
 
 ```
 
-__/\\\\\\\\\\\\\\\________/\\\\\\\\\____________/\\\\\_____/\\\\\\\_____/\\\\\\\\\\\\\\\_        
- _\/\\\///////////______/\\\////////_________/\\\\////____/\\\/////\\\__\/////////////\\\_       
-  _\/\\\_______________/\\\/_______________/\\\///________/\\\____\//\\\____________/\\\/__      
-   _\/\\\\\\\\\\\______/\\\_______________/\\\\\\\\\\\____\/\\\_____\/\\\__________/\\\/____     
-    _\/\\\///////______\/\\\______________/\\\\///////\\\__\/\\\_____\/\\\________/\\\/______    
-     _\/\\\_____________\//\\\____________\/\\\______\//\\\_\/\\\_____\/\\\______/\\\/________   
-      _\/\\\______________\///\\\__________\//\\\______/\\\__\//\\\____/\\\_____/\\\/__________  
-       _\/\\\\\\\\\\\\\\\____\////\\\\\\\\\__\///\\\\\\\\\/____\///\\\\\\\/____/\\\/____________ 
-        _\///////////////________\/////////_____\/////////________\///////_____\///______________
-
+/\\\\\\\\\\\\\\\        /\\\\\\\\\            /\\\\\     /\\\\\\\     /\\\\\\\\\\\\\\\        
+\/\\\///////////      /\\\////////         /\\\\////    /\\\/////\\\  \/////////////\\\       
+ \/\\\               /\\\/               /\\\///        /\\\    \//\\\            /\\\/       
+  \/\\\\\\\\\\\      /\\\               /\\\\\\\\\\\    \/\\\     \/\\\          /\\\/        
+   \/\\\///////      \/\\\              /\\\\///////\\\  \/\\\     \/\\\        /\\\/         
+    \/\\\             \//\\\            \/\\\      \//\\\ \/\\\     \/\\\      /\\\/          
+     \/\\\              \///\\\          \//\\\      /\\\  \//\\\    /\\\     /\\\/           
+      \/\\\\\\\\\\\\\\\    \////\\\\\\\\\  \///\\\\\\\\\/    \///\\\\\\\/    /\\\/            
+       \///////////////        \/////////     \/////////        \///////     \///             
 ```                                                                       
 
 ## Schedule
@@ -22,15 +21,15 @@ __/\\\\\\\\\\\\\\\________/\\\\\\\\\____________/\\\\\_____/\\\\\\\_____/\\\\\\\
 
 **Lab** Friday 12:30pm–1:30pm, Zoom ([See Canvas](https://canvas.uoregon.edu/courses/176672/external_tools/1449))
 
-**Office hours**
+**Office hours** ([see Canvas for Zoom links](https://canvas.uoregon.edu/courses/176672))
 
-**[Ed Rubin](https://edrub.in)** TBD, Zoom ([See Canvas for link](https://canvas.uoregon.edu/courses/176672))
-- TBD
-- TBD
+**[Ed Rubin](https://edrub.in)**
+- Tuesdays: 1pm–2pm (Pacific)
+- Thursdays: 4pm–5pm (Pacific)
 
-**[Philip Economides](https://sites.google.com/tcd.ie/philip-economides/home)** ([See Canvas for link](https://canvas.uoregon.edu/courses/176672))
-- Fridays: 1:30pm–2:30pm, Zoom 
-- TBD
+**[Philip Economides](https://sites.google.com/tcd.ie/philip-economides/home)**
+- Wednesdays: 1pm–2pm (Pacific)
+- Fridays: 1:30pm–2:30pm (Pacific)
 
 ## Books
 
@@ -182,7 +181,7 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 
 [Philip Economides](https://sites.google.com/tcd.ie/philip-economides/home) will walk you through R and applications of the course content. You *should attend*.
 
-Links coming.
+[**Lab website**](https://github.com/peconomi/spring2021_core_metrics_lab)
 
 ## Previous lab slides
 
