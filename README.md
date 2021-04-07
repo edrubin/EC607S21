@@ -23,12 +23,12 @@ Welcome to **Economics 607: Econometrics III** (Spring 2021) at the University o
 **Office hours** ([see Canvas for Zoom links](https://canvas.uoregon.edu/courses/176672))
 
 **[Ed Rubin](https://edrub.in)**
-- Tuesdays: 1pm–2pm (Pacific)
-- Thursdays: 4pm–5pm (Pacific)
+- Tuesdays: 1pm–2pm, Pacific (See Zoom link)
+- Thursdays: 4pm–5pm, Pacific (Immediately after class)
 
 **[Philip Economides](https://sites.google.com/tcd.ie/philip-economides/home)**
-- Wednesdays: 1pm–2pm (Pacific)
-- Fridays: 1:30pm–2:30pm (Pacific)
+- Wednesdays: 1pm–2pm, Pacific
+- Fridays: 1:30pm–2:30pm, Pacific
 
 ## Books
 
