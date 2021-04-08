@@ -23,8 +23,8 @@ Welcome to **Economics 607: Econometrics III** (Spring 2021) at the University o
 **Office hours** ([see Canvas for Zoom links](https://canvas.uoregon.edu/courses/176672))
 
 **[Ed Rubin](https://edrub.in)**
-- Tuesdays: 1pm–2pm, Pacific (See Zoom link)
-- Thursdays: 4pm–5pm, Pacific (Immediately after class)
+- Tuesdays: 1pm–2pm, Pacific (see Zoom link)
+- Thursdays: 4pm–5pm, Pacific (immediately after class)
 
 **[Philip Economides](https://sites.google.com/tcd.ie/philip-economides/home)**
 - Wednesdays: 1pm–2pm, Pacific
@@ -105,14 +105,18 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 [.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/03-why-regression/03-why-regression.Rmd)
 <br>**Readings:** MHE chapter 3.1
 
-**Lecture 04: Inference and Simulation**
+**[Lecture 04: Inference and Simulation](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/04-inference/04-inference.html)**
 
 1. How do we move from populations to samples?
 2. What matters for drawing basic statistical inferences about the population?
 3. How can we learn about inference from simulation?
 4. How do we run (parallelized) simulations in R?
 
-**Readings:** MHE chapter 3
+**Note formats:** [.html](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/04-inference/04-inference.html) |
+[.pdf](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/04-inference/04-inference.pdf) |
+[.pdf (no pauses)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/04-inference/04-inference-nopause.pdf) | 
+[.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/04-inference/04-inference.Rmd)
+<br>**Readings:** MHE chapter 3
 
 **Lecture 05: Regression Stuff**
 
@@ -259,11 +263,11 @@ Building a research project/proposal.
 
 Step 1: **Research question (causal relationship of interest) and motivation.**
 
-- *Assignment:* Pitch a project—including the causal question of interest, the motivation, and (optional) how you could answer the question.
+- *Assignment:* Pitch a project—including the causal question of interest, the motivation.
 - This project should be something you could turn into a legitimate research project.
 - Length: Between 2 sentences and 2 paragraphs (think *abstract*—read abstracts if necessary).
 
-**Due:** TBA, ([Canvas](https://canvas.uoregon.edu/courses/176672))
+**Due:** [April 15 on Canvas](https://canvas.uoregon.edu/courses/176672/assignments/1099153?module_item_id=3139117)
 
 Step 2: **Project proposal**
 
