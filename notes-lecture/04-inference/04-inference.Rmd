@@ -758,7 +758,7 @@ ggplot(data = null_df, aes(x = p.value, fill = se_type)) +
   geom_density(color = NA) +
   geom_hline(yintercept = 0) +
   geom_vline(xintercept = 0.05, linetype = "longdash", color = red_pink) +
-  xlab("t statistic") +
+  xlab("p-Value") +
   ylab("Density") +
   scale_fill_viridis(
     "", labels = c("Classical", "Het. Robust"), discrete = T,
