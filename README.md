@@ -118,13 +118,17 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 [.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/04-inference/04-inference.Rmd)
 <br>**Readings:** MHE chapter 3
 
-**Lecture 05: Regression Stuff**
+**[Lecture 05: Regression Stuff](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/05-regression-stuff/05-regression-stuff.html)**
 
 1. Saturated models
 1. When is regression causal?
 1. The conditional-independence assumption
 
-**Readings:** Still MHE chapter 3
+**Note formats:** [.html](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/05-regression-stuff/05-regression-stuff.html) |
+[.pdf](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/05-regression-stuff/05-regression-stuff.pdf) |
+[.pdf (no pauses)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/05-regression-stuff/05-regression-stuff-nopause.pdf) | 
+[.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/05-regression-stuff/05-regression-stuff.Rmd)
+<br>**Readings:** Still MHE chapter 3
 
 **Lecture 06: Controls**
 
