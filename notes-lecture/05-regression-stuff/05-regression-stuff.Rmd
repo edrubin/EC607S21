@@ -439,7 +439,7 @@ Previously, we discussed how experiments randomly assign treatment to .it[ensure
 Now we would like to .hi-slate[extend this framework] to
 
 1. variables that take on .hi-slate[more than two values]
-2. situations that requrire us to .hi-slate[hold many covariates constant] in order to achieve a valid causal interpretation
+2. situations that require us to .hi-slate[hold many covariates constant] in order to achieve a valid causal interpretation
 
 ---
 
@@ -646,7 +646,7 @@ $=\mathop{E}\left[ f_i(\color{#e64173}{12}) - f_i(\color{#e64173}{11}) \right]$â
 
 .note[Takeaways]
 
-1. Conditional independence gives our parameters .hi[causal interpretations] (elminating selection bias).
+1. Conditional independence gives our parameters .hi[causal interpretations] (eliminating selection bias).
 
 --
 
