@@ -455,6 +455,8 @@ name: bad_def
 --
 
 .qa[A] *Bad controls* are variables that are (also) affected by treatment.
+--
+<br> .note[Note] As you'll see when we discuss DAGs, there are other types of .it[bad controls] too.
 
 --
 
@@ -492,6 +494,17 @@ Suppose we want to know the .hi-slate[effect of college graduation on wages].
  we compare degree-earners who chose blue-collar jobs to non-degree-earners who chose blue-collar jobs.
 --
  Our assumption of random degrees says .b[nothing] about random job selection.
+
+---
+layout: false
+class: clear, middle
+
+Bad controls can undo valid randomizations.
+
+---
+layout: true
+# Bad controls
+
 ---
 name: bad_formal
 ## Formal-ish derivation
@@ -565,7 +578,7 @@ $$
   \mathop{E}\left[ \color{#6A5ACD}{\text{Y}_{0i}} \mid \color{#e64173}{\text{W}_{1i}} = 1\right] - \mathop{E}\left[ \color{#6A5ACD}{\text{Y}_{0i}} \mid \color{#6A5ACD}{\text{W}_{0i}} = 1\right]
 \end{align}
 $$
-describes how college graduation changes the composition of the pool of white-class workers.
+describes how college graduation changes the composition of the pool of white-collar workers.
 
 --
 
