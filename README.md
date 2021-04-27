@@ -141,14 +141,27 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 [.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/06-controls/06-controls.Rmd)
 <br>**Readings:** Still MHE chapter 3
 
-**Lecture 07: Matching**
+**[Lecture 07: DAGs](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/07-dags/07-dags.html)**
+
+1. Defining graphs 
+1. Underlying theory for DAGs
+1. Building blocks
+1. Examples
+
+**Note formats:** [.html](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/07-dags/07-dags.html) |
+[.pdf](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/07-dags/07-dags.pdf) |
+[.pdf (no pauses)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/07-dags/07-dags-nopause.pdf) | 
+[.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/07-dags/07-dags.Rmd)
+<br>**Readings:** Brady Neal's book, chapters 1–3 (especially 2–3)
+
+**Lecture 08: Matching**
 
 1. Matching estimators: Nearest neighbor and kernel
 1. Propensity-score methods: Regression control, treatment-effect heterogeneity, blocking, weighting, *doubly robust*
 
 **Readings:** MHE chapter 3 + C&T section 25.4
 
-**Lecture 08: Instrument Variables**
+**Lecture 09: Instrument Variables**
 
 1. General research designs
 1. Instrumental variables
@@ -157,7 +170,7 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 
 **Readings:** MHE chapter 4 + C&T sections 4.8–4.9
 
-**Lecture 09: Regression Discontinuity**
+**Lecture 10: Regression Discontinuity**
 
 1. Sharp regression discontinuities
 1. Fuzzy regression discontinuities
@@ -165,7 +178,7 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 
 **Readings:** MHE chapter 6 + C&T sections 25.6
 
-**Lecture 10: Inference: Clustering**
+**Lecture 11: Inference: Clustering**
 
 1. General inference
 1. Moulton
@@ -173,7 +186,7 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 
 **Readings:** MHE chapter 8
 
-**Lecture 11: Inference: Resampling and Randomization**
+**Lecture 12: Inference: Resampling and Randomization**
 
 1. Resampling
 1. The bootstrap
@@ -182,7 +195,7 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 
 **Readings:** MHE chapter 6 + C&T sections 25.6
 
-**Lecture 12: Machine learning (in one lecture)**
+**Lecture 13: Machine learning (in one lecture)**
 
 1. Prediction basics
 1. The bias-variance tradeoff
