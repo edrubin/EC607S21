@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>DAGs</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Edward Rubin" />
+    <link href="07-dags-scribble_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="07-dags-scribble_files/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="07-dags-scribble_files/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <script src="07-dags-scribble_files/fabric-4.3.1/fabric.min.js"></script>
+    <link href="07-dags-scribble_files/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
+    <script src="07-dags-scribble_files/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#e64173"],"pen_size":3,"eraser_size":30}) })</script>
+    <link rel="stylesheet" href="my-css.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# DAGs
+## EC 607, Set 07
+### Edward Rubin
+### Spring 2021
+
+---
+
+class: inverse, middle
+
+
+
+
+
+&lt;style type="text/css"&gt;
+@media print {
+  .has-continuation {
+    display: block !important;
+  }
+}
+&lt;/style&gt;
+
+$$
+`\begin{align}
+  \def\ci{\perp\mkern-10mu\perp}
+\end{align}`
+$$
+
+
+# Prologue
+
+---
+name: schedule
+
+# Schedule
+
+## Last time
+
+(Bad) Controls
+
+## Today
+
+Directed Acyclic Graphs (DAGs)
+
+## Upcoming
+
+Matching
+
+---
+class: inverse, middle
+# DAGs
+
+---
+layout: true
+# DAGs
+
+---
+name: different
+##  What's a DAG?
+
+.note[DAG] stands for .b[directed acyclic graph].
+
+--
+
+More helpful...
+
+A .note[DAG] graphically illustrates the causal relationships and non-causal associations within a network of random variables.
+
+---
+name: dag-ex
+layout: false
+class: clear
+
+.ex[Example] Omitted-variable bias in a DAG 
+
+
+
+&lt;img src="07-dags-scribble_files/figure-html/dag-ex-ovb-1.svg" style="display: block; margin: auto;" /&gt;
+
+A pretty standard DAG.
+
+---
+class: clear
+
+.ex[Example] Omitted-variable bias in a DAG 
+
+&lt;img src="07-dags-scribble_files/figure-html/dag-ex-ovb-nodes-1.svg" style="display: block; margin: auto;" /&gt;
+
+.b.pink[Nodes] are random variables.
+
+---
+class: clear
+
+.ex[Example] Omitted-variable bias in a DAG 
+
+&lt;img src="07-dags-scribble_files/figure-html/dag-ex-ovb-edges-1.svg" style="display: block; margin: auto;" /&gt;
+
+.b.purple[Edges] depict causal links. Causality flows in the direction of the .b.purple[arrows].
+
+--
+
+- Connections matter!
+- Direction matters (for causality).
+- Non-connections also matter! .grey-light[(More on this topic soon.)]
+
+---
+class: clear
+
+.ex[Example] Omitted-variable bias in a DAG 
+
+&lt;img src="07-dags-scribble_files/figure-html/dag-ex-ovb-2-1.svg" style="display: block; margin: auto;" /&gt;
+
+Here we can see that .b.slate[Y] is affected by both .b.slate[D] and .b.slate[W].
+
+.b.slate[W] also affects .b.slate[D].
+
+--
+
+.qa[Q] How does this graph exhibit OVB?
+
+---
+class: clear
+
+.ex[Example] Omitted-variable bias in a DAG 
+
+&lt;img src="07-dags-scribble_files/figure-html/dag-ex-ovb-3-1.svg" style="display: block; margin: auto;" /&gt;
+
+There are two pathways from .b.slate[D] to .b.slate[Y].
+
+--
+
+.slate[1\.] The path from .b.slate[D] to .b.slate[Y] `\(\color{#e64173}{\left(\text{D}\rightarrow\text{Y}\right)}\)` is our casual relationship of interest. 
+
+---
+class: clear
+
+.ex[Example] Omitted-variable bias in a DAG 
+
+&lt;img src="07-dags-scribble_files/figure-html/dag-ex-ovb-4-1.svg" style="display: block; margin: auto;" /&gt;
+
+There are two pathways from .b.slate[D] to .b.slate[Y].
+
+.slate[1\.] The path from .b.slate[D] to .b.slate[Y] `\(\color{#314f4f}{\left(\text{D}\rightarrow\text{Y}\right)}\)` is our casual relationship of interest. 
+&lt;br&gt;
+.slate[2\.] The path `\(\color{#e64173}{\left(\text{Y}\leftarrow\text{W}\rightarrow\text{D}\right)}\)` creates a .orange[non-causal association] btn .b.slate[D] and .b.slate[Y].
+
+---
+class: clear
+
+.ex[Example] Omitted-variable bias in a DAG 
+
+&lt;img src="07-dags-scribble_files/figure-html/dag-ex-ovb-6-1.svg" style="display: block; margin: auto;" /&gt;
+
+There are two pathways from .b.slate[D] to .b.slate[Y].
+
+.slate[1\.] The path from .b.slate[D] to .b.slate[Y] `\(\color{#314f4f}{\left(\text{D}\rightarrow\text{Y}\right)}\)` is our casual relationship of interest. 
+&lt;br&gt;
+.slate[2\.] The path `\(\color{#314f4f}{\left(\text{Y}\leftarrow\text{W}\rightarrow\text{D}\right)}\)` creates a .orange[non-causal association] btn .b.slate[D] and .b.slate[Y].
+
+To shut down this pathway creating a non-causal association, we must .b.grey-light[condition on .b[W]]. Sound familiar?
+
+---
+layout: true
+# Graphs
+
+---
+class: inverse, middle
+name: graphs
+
+---
+
+## More formally
+
+In graph theory, a .pink.def[graph] is a collection of .purple.def[nodes] connected by .orange.def[edges].
+
+--
+
+
+
+&lt;img src="07-dags-scribble_files/figure-html/graph-ex-undirected-1.svg" style="display: block; margin: auto;" /&gt;
+
+--
+
+- Nodes connected by an edge are called .def[adjacent].
+--
+
+- .def[Paths] run along adjacent nodes, .it[e.g.], `\(\text{A}-\text{B}-\text{C}\)`.
+--
+
+- The graph above is .def[undirected], since the edges don't have direction. 
+
+---
+name: graphs-directed
+## Directed
+
+.def.purple[Directed graphs] have edges with direction.
+
+&lt;img src="07-dags-scribble_files/figure-html/graph-ex-directed-1.svg" style="display: block; margin: auto;" /&gt;
+
+--
+
+- .def[Directed paths] follow edges' directions, *e.g.*, `\(\text{A}\rightarrow\text{B}\rightarrow\text{C}\)`.
+
+--
+- Nodes that precede a given node in a directed path are its .def[ancestors].
+
+--
+- The opposite: .def[descendants] come after the node, *e.g.*, `\(\text{D}=\text{de}(\text{C})\)`.
+
+---
+name: graphs-cycles
+## Cycles
+
+If a node is its own descendant (*e.g.*, `\(\text{de}(\text{D})=\text{D}\)`), your graph has a .pink.def[cycle].
+
+
+
+
+&lt;img src="07-dags-scribble_files/figure-html/graph-ex-cycle-1.svg" style="display: block; margin: auto;" /&gt;
+
+--
+
+If your directed graph does not have any cycles, then you have a &lt;br&gt; .def.orange[directed acyclic graph] (.def.orange[DAG]).
+
+---
+layout: true
+# DAGs
+
+---
+class: inverse, middle
+
+---
+name: dag-origins
+## The origin story
+
+Many developments in .it[causal graphical models] came from work in probabilistic graphical models—especially Bayesian networks.
+
+--
+
+Recall what you know about joint probabilities:
+
+$$
+`\begin{align}
+  &amp;\color{#FFA500}{2} &amp;P(x_1,x_2) &amp;= P(x_1) P(x_2|x_1)
+  \\[0.2em]
+  &amp;\color{#FFA500}{3} &amp;P(x_1,x_2,x_3) &amp;= P(x_1) P(x_2,x_3|x_1) = P(x_1) P(x_2|x_1) P(x_3|x_2,x_1)
+  \\[0.2em]
+  &amp;\color{#FFA500}{\vdots} 
+  \\[0.2em]
+  &amp;\color{#FFA500}{n} &amp;P(x_1,x_2,\dots,x_n) &amp;= P(x_1)\prod_{i=2}^{n} P(x_i|x_{i-1},\ldots,x_1)
+\end{align}`
+$$
+
+--
+
+This final product can include *a lot* of terms.
+&lt;br&gt;.ex[E.g.,] even when `\(x_i\)` are binary, `\(P(x_4 | x_3,x_2,x_1)\)` requires `\(2^3=8\)` parameters.
+
+---
+name: local-markov
+## Thinking locally
+
+DAGs help us think through simplifying `\(P(x_k | x_{k-1},x_{k-2},\ldots,x_1)\)`.
+
+--
+
+&lt;img src="07-dags-scribble_files/figure-html/graph-prob-1.svg" style="display: block; margin: auto;" /&gt;
+
+Given a prob. dist. and a DAG, can we assume some independencies?
+--
+&lt;br&gt; Given `\(\color{#6A5ACD}{\text{C}}\)`, is it reasonable to assume `\(\color{#6A5ACD}{\text{D}}\)` is independent of `\(\color{#6A5ACD}{\text{A}}\)` and `\(\color{#6A5ACD}{\text{B}}\)`?
+
+
+---
+## Local Markov
+
+This intuitive approach *is* the .def.purple[Local Markov Assumption]
+&gt; Given its parents in the DAG, a node `\(X\)` is independent of all of its non-descendants.
+
+--
+
+.col-left[
+.ex[Ex.] Consider the DAG to the right:
+
+With the Local Markov Assumption,
+&lt;br&gt;
+`\(P(\text{D}|\text{A},\text{B},\text{C})\)` simplifies to `\(P(\text{D}|\text{C})\)`.
+
+Conditional on its parent `\((\text{C})\)`,
+&lt;br&gt;
+`\(\text{D}\)` is independent of `\(\text{A}\)` and `\(\text{B}\)`.
+]
+
+.col-right[
+&lt;img src="07-dags-scribble_files/figure-html/graph-prob-2-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+name: dags-factor
+## Local Markov and factorization
+
+The Local Markov Assumption is equiv. to .def.purple[Bayesian Network Factorization]
+&gt; For prob. dist. `\(P\)` and DAG `\(G\)`, `\(P\)` factorizes according to `\(G\)` if 
+$$
+`\begin{align}
+  P(x_1,\ldots,x_n) = \prod_{i} P(x_i|\text{pa}_i)
+\end{align}`
+$$
+where `\(\text{pa}_i\)` refers to `\(x_i\)`'s parents in `\(G\)`.
+
+Bayesian network factorization is also called *the chain rule for Bayesian networks* and *Markov compatibility*.
+
+---
+name: factorization
+## Factorize!
+
+You can now (more easily) factorize the DAG/dist. below! .grey-vlight[(You're welcome.)]
+
+
+.col-left[
+&lt;img src="07-dags-scribble_files/figure-html/graph-factorize-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+
+.col-right[
+.b.slate[Factorization via B.N. chain rule]
+
+$$
+`\begin{align}
+  &amp;P(\text{A},\text{B},\text{C},\text{D}) 
+  \\[0.4em]
+  &amp;\quad = \prod_{i} P(x_i|\text{pa}_i)
+  \\[0.4em]
+  &amp;\quad = P(\text{A}) P(\text{B}|\text{A}) P(\text{C}|\text{A},\text{B}) P(\text{D}|\text{C})
+\end{align}`
+$$
+
+]
+
+
+---
+## Independence
+
+What have we learned so far? .grey-vlight[(Why should you care about this stuff?)]
+
+Local Markov and Bayesian Network Factorization tell us abound .attn[independencies] within a probability distribution implied by the given DAG.
+
+You're now able to say something about which variables are .pink.it[independent].
+
+--
+
+.b[There's more:] Great start, but there's more to life than independence.
+&lt;br&gt;We also want to say something about .purple.it[dependence].
+
+---
+name: dags-dependence
+## Dependence
+
+We need to strengthen our Local Markov assumption to be able to interpret adjacent nodes as dependent. .grey-vlight[(*I.e.*, add it to our small set of assumptions.)]
+
+--
+
+The .def.purple[Minimality Assumption].pink.super[†]
+&gt; 1. .def.purple[Local Markov] Given its parents in the DAG, a node `\(X\)` is independent of all of its non-descendants.
+&gt; 2. .it.grey-light[(NEW)] Adjacent nodes in the DAG are dependent.
+
+.footnote[
+.pink[†] The name .grey-light.def[minimality] refers to the minimal set of independencies for `\(P\)` and `\(G\)`—we cannot remove any more edges from the graph (while staying Markov compatible with `\(G\)`).]
+
+--
+
+With the minimality assumption, we can learn both .pink[dependence] and .orange[independence] from connections (or non-connections) in a DAG. 
+
+---
+name: dags-causlity
+## Causality
+
+We need one last assumption move DAGs from .it[statical] to .it[causal] models.
+
+--
+
+.def.purple[Strict Causal Edges Assumption]
+&gt; Every parent is a direct cause of each of its children.
+
+--
+
+For `\(Y\)`, the set of .it[direct causes] is the set of variables to which `\(Y\)` responds.
+
+--
+
+This assumption actually strengthens the second part of .note[Minimality]:
+&gt; 2\. Adjacent nodes in the DAG are dependent.
+
+---
+## Assumptions
+
+Thus, we only need two assumptions to turn DAGs into causal models:
+
+1. .def.purple[Local Markov] Given its parents in the DAG, a node `\(X\)` is independent of all of its non-descendants.
+
+1. .def.purple[Strict Causal Edges] Every parent is a direct cause of each of its children.
+
+--
+
+Not bad, right?
+
+---
+## Flows
+
+[Brady Neal](https://bradyneal.com) emphasizes the .note[flow(s) of association] and .note[causation] in DAGs,
+&lt;br&gt;and I find it to be a super helpful way to think about these models.
+
+.def.purple[Flow of association] refers to whether two nodes are associated (statistically dependent) or not (statistically independent).
+
+We will be interested in unconditional and conditional associations.
+
+---
+name: building-blocks
+## Building blocks
+
+We will run through a few simple .it[building blocks] (DAGs) that make up more complex DAGs.
+
+For each simple DAG, we want to ask a few questions:
+
+1. Which nodes are unconditionally or conditionally .b.pink[independent]?.super.pink[†]
+
+1. Which nodes are .b.orange[dependent]?
+
+1. What is the .b.purple[intuition]?
+
+.footnote[
+.pink[†] To prove `\(\text{A}\)` and `\(\text{B}\)` are conditionally independent, we can show `\(P(\text{A},\text{B}|\text{C})\)` factorizes as `\(P(\text{A}|\text{C})P(\text{B}|\text{C})\)`.]
+
+---
+layout: true
+class: clear
+
+---
+.note[Building block 1:] .b.slate[Two unconnected nodes]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb1-plot-1.svg" style="display: block; margin: auto;" /&gt;
+
+--
+
+.b.purple[Intuition:]
+--
+ `\(\text{A}\)` and `\(\text{B}\)` appear independent—no link between the nodes.
+
+--
+
+.b.pink[Proof:]
+--
+ By [Bayesian network factorization](#factorization),
+$$
+`\begin{align}
+  P(\text{A},\text{B}) = P(\text{A}) P(\text{B})
+\end{align}`
+$$
+(since neither node has parents). `\(\checkmark\)`
+
+---
+.note[Building block 2:] .b.slate[Two connected nodes]
+
+
+
+&lt;img src="07-dags-scribble_files/figure-html/bb2-plot-1.svg" style="display: block; margin: auto;" /&gt;
+
+--
+
+.b.purple[Intuition:]
+--
+ `\(\text{A}\)` "is a cause of" `\(\text{B}\)`: there is clear (causal) dependence..super.pink[†]
+
+.footnote[
+.pink[†] I'm not a huge fan of the "is a cause of" wording, but it appears to be (unfortunately) common in this literature. IMO, `\(``\text{A}\)` causes (or affects) `\(\text{B"}\)` would be clearer (and more grammatical), but no one asked me. One argument for "a cause of" (vs. "causes") is it emphasizes that events often have multiple causes.]
+
+--
+
+.b.pink[Proof:]
+--
+ By the [Strict Causal Edges Assumption](#dags-causlity), every parent (here, `\(\text{A}\)`) is a direct cause of each of its children `\(\left(\text{B}\right)\)`. `\(\checkmark\)`
+
+---
+name: blocks-chains
+.note[Building block 3:] .b.slate[Chains]
+
+
+
+&lt;img src="07-dags-scribble_files/figure-html/bb3-plot-1.svg" style="display: block; margin: auto;" /&gt;
+
+--
+
+.b.purple[Intuition:] We already showed two connected nodes are dependent:
+- `\(\text{A}\)` and `\(\text{B}\)` are dependent.
+- `\(\text{B}\)` and `\(\text{C}\)` are dependent.
+
+The question is whether `\(\text{A}\)` and `\(\text{C}\)` are dependent:
+&lt;br&gt;Does association flow from `\(\text{A}\)` to `\(\text{C}\)` through `\(\text{B}\)`?
+
+---
+count: false
+.note[Building block 3:] .b.slate[Chains]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb3-plot-2-1.svg" style="display: block; margin: auto;" /&gt;
+
+.b.purple[Intuition:] We already showed two connected nodes are dependent:
+- `\(\text{A}\)` and `\(\text{B}\)` are dependent.
+- `\(\text{B}\)` and `\(\text{C}\)` are dependent.
+
+The question is whether `\(\text{A}\)` and `\(\text{C}\)` are dependent:
+&lt;br&gt;Does association flow from `\(\text{A}\)` to `\(\text{C}\)` through `\(\text{B}\)`? 
+
+The answer .it[generally].super.pink[†] is .orange["yes"]: changes in `\(\text{A}\)` typically cause changes in `\(\text{C}\)`. 
+
+.footnote[
+.pink[†] Section 2.2 of [Pearl, Glymour, and Jewell](http://bayes.cs.ucla.edu/PRIMER/) provides a "pathological" example of "intransitive dependence". It's basically when `\(\text{A}\)` induces variation in `\(\text{B}\)` that is not relevant to `\(\text{C}\)`' outcome.]
+
+---
+.note[Building block 3:] .b.slate[Chains]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb3-plot-3-1.svg" style="display: block; margin: auto;" /&gt;
+
+.b.pink[Proof:] Here's the unsatisfying part. 
+
+Without more assumptions, we can't *prove* this association of `\(\text{A}\)` and `\(\text{C}\)`.
+
+We'll think of this as a potential (even likely) association.
+
+---
+.note[Building block 3:] .b.slate[Chains with conditions]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb3-plot-4-1.svg" style="display: block; margin: auto;" /&gt;
+
+.qa[Q] How does conditioning on `\(\text{B}\)` affect the association between `\(\text{A}\)` and `\(\text{C}\)`?
+
+.b.purple[Intuition:] 
+
+1. `\(\text{A}\)` affects `\(\text{C}\)` by changing `\(\text{B}\)`. 
+2. When we hold `\(\text{B}\)` constant, `\(\text{A}\)` cannot "reach" `\(\text{C}\)`.
+
+We've .def.purple[blocked] the path of association between `\(\text{A}\)` and `\(\text{C}\)`.
+
+Conditioning blocks the flow of association .b[in chains]. ("Good" control!)
+
+---
+.note[Building block 3:] .b.slate[Chains with conditions]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb3-plot-6-1.svg" style="display: block; margin: auto;" /&gt;
+
+.b.pink[Proof:] We want to show `\(\text{A}\)` and `\(\text{C}\)` are independent conditional on `\(\text{B}\)`,
+&lt;br&gt;*i.e.*, `\(P(\text{A},\text{C}|\text{B})=P(\text{A}|\text{B})P(\text{C}|\text{B})\)`.
+
+--
+
+Start with BN factorization: `\(P(\text{A},\text{B},\text{C})\)`
+--
+ `\(= P(\text{A})P(\text{B}|\text{A})P(\text{C}|\text{B})\)`.
+
+--
+
+Now apply Bayes' rule for the LHS of our goal: `\(P(\text{A},\text{C}|\text{B}) = \frac{P(\text{A},\text{B},\text{C})}{P(\text{B})}\)`.
+
+--
+
+And substitute our factorization into the Bayes' rule expression:
+
+`\(P(\text{A},\text{C}|\text{B}) = \dfrac{P(\text{A})P(\text{B}|\text{A})\color{#e64173}{P(\text{C}|\text{B})}}{P(\text{B})}\)`
+--
+ `\(=P(\text{A}|\text{B})\color{#e64173}{P(\text{C}|\text{B})}\)` `\(\checkmark\)` .grey-light[(Bayes rule again)]
+
+---
+.note[Building block 3:] .b.slate[Chains]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb3-plot-7-1.svg" style="display: block; margin: auto;" /&gt;
+
+.note[Note] This .orange[association of] `\(\color{#FFA500}{\text{A}}\)` .orange[and] `\(\color{#FFA500}{\text{C}}\)` is not directional. (It is symmetric.)
+
+On the other hand, causation .b[is] directional (and asymmetric).
+
+As you've been warned for years: Associations are not necessarily causal.
+
+---
+name: blocks-forks
+
+.note[Building block 4:] .b.slate[Forks]
+
+
+
+&lt;img src="07-dags-scribble_files/figure-html/bb4-plot-1-1.svg" style="display: block; margin: auto;" /&gt;
+
+.def.purple[Forks] are another very common structure in DAGs: `\(\text{A}\leftarrow \text{B} \rightarrow \text{C}\)`.
+
+---
+.note[Building block 4:] .b.slate[Forks]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb4-plot-2-1.svg" style="display: block; margin: auto;" /&gt;
+
+`\(\text{A}\)` and `\(\text{C}\)` are *usually* .orange[associated] in forks. .grey-light[(As with chains.)]
+
+This chain of association follows the path `\(\text{A}\leftarrow \text{B} \rightarrow \text{C}\)`.
+
+--
+
+.b.purple[Intuition:] 
+--
+ `\(\text{B}\)` induces changes in `\(\text{A}\)` and `\(\text{B}\)`. An observer will see `\(\text{A}\)` change when `\(\text{C}\)` also changes—they are associated due to their common cause.
+
+---
+.note[Building block 4:] .b.slate[Forks]
+
+
+
+&lt;img src="07-dags-scribble_files/figure-html/bb4-plot-ovb-1.svg" style="display: block; margin: auto;" /&gt;
+
+Another way to think about forks: 
+
+OVB when a treatment `\(\text{D}\)` does not affect the outcome `\(\text{Y}\)`.
+
+Without controlling for `\(\text{W}\)`, `\(\text{Y}\)` and `\(\text{D}\)` are (usually) .orange[non-causally associated].
+
+---
+.note[Building block 4:] .b.slate[Forks]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb4-plot-3-1.svg" style="display: block; margin: auto;" /&gt;
+
+`\(\text{A}\)` and `\(\text{C}\)` are *usually* .orange[associated] in forks. .grey-light[(As with chains.)]
+
+This chain of association follows the path `\(\text{A}\leftarrow \text{B} \rightarrow \text{C}\)`.
+
+.b.pink[Proof:]
+--
+ Same problem as chains: We can't show `\(\text{A}\)` and `\(\text{C}\)` are independent, so we assume they're likely (potentially?) dependent.
+
+---
+.note[Building block 4:] .b.slate[Blocked forks]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb4-plot-4-1.svg" style="display: block; margin: auto;" /&gt;
+
+Conditioning on `\(\text{B}\)` makes `\(\text{A}\)` and `\(\text{C}\)`
+--
+ independent. .grey-light[(As with chains.)]
+
+.b.purple[Intuition:]
+--
+ `\(\text{A}\)` and `\(\text{C}\)` are only associated due to their common cause `\(\text{B}\)`.
+
+When we shutdown (hold constant) this common cause `\((\text{B})\)`, 
+&lt;br&gt;there is way for `\(\text{A}\)` and `\(\text{C}\)` to associate.
+
+--
+
+.note[Also:] Think about Local Markov. Or think about OVB.
+
+---
+.note[Building block 4:] .b.slate[Blocked forks]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb4-plot-5-1.svg" style="display: block; margin: auto;" /&gt;
+
+.b.pink[Proof:] We want to show `\(P(\text{A},\text{C}|\text{B})=P(\text{A}|\text{B})P(\text{C}|\text{B})\)`.
+
+--
+
+.note[Step 1:] Bayesian net. factorization: `\(P(\text{A},\text{B},\text{C})=P(\text{B})\color{#e64173}{P(\text{A}|\text{B})P(\text{C}|\text{B})}\)`
+
+--
+
+.note[Step 2:] Bayes' rule: `\(P(\text{A},\text{C}|\text{B})=\frac{P(\text{A},\text{B},\text{C})}{P(\text{B})}\)`
+
+--
+
+.note[Step 3:] Combine .note[2] &amp; .note[1]: `\(P(\text{A},\text{C}|\text{B})=\frac{P(\text{A},\text{B},\text{C})}{P(\text{B})} = \color{#e64173}{P(\text{A}|\text{B})P(\text{C}|\text{B})}\)` `\(\checkmark\)`
+
+---
+.note[Building block 4:] .b.slate[Forks]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb4-plot-6-1.svg" style="display: block; margin: auto;" /&gt;
+
+Two more items to emphasize:
+
+1. .b.orange[Association] need not follow paths' directions, *e.g.*, `\(\text{A}\leftarrow \text{B} \rightarrow \text{C}\)`.
+
+2. .b.pink[Causation] follows directed paths.
+
+---
+name: blocks-colliders
+.note[Building block 5:] .b.slate[Immoralities]
+
+
+
+&lt;img src="07-dags-scribble_files/figure-html/bb5-plot-1-1.svg" style="display: block; margin: auto;" /&gt;
+
+ An .def.purple[immorality] occurs when two nodes share a child without being otherwise connected..super.pink[†] `\(\text{A} \rightarrow \text{B} \leftarrow \text{C}\)`
+
+.footnote[.pink[†] I'm not making this up.]
+
+--
+
+The child (here: `\(\text{B}\)`) at the center of this immorality is called a .def.purple[collider].
+
+--
+
+.note[Notice:] An immorality is a fork with reversed directions of the edges.
+
+---
+.note[Building block 5:] .b.slate[Immoralities]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb5-plot-2-1.svg" style="display: block; margin: auto;" /&gt;
+
+.qa[Q] Are `\(\text{A}\)` and `\(\text{C}\)` independent?
+
+---
+count: false
+.note[Building block 5:] .b.slate[Immoralities]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb5-plot-3-1.svg" style="display: block; margin: auto;" /&gt;
+
+.qa[Q] Are `\(\text{A}\)` and `\(\text{C}\)` independent?
+&lt;br&gt;
+.qa[A] Yes. `\(\text{A} \ci \text{C}\)`.
+
+--
+
+.b.purple[Intuition:] Causal effects flow from `\(\text{A}\)` and `\(\text{C}\)` and stop there.
+
+- Neither `\(\text{A}\)` nor `\(\text{C}\)` is a descendant of the other.
+- `\(\text{A}\)` and `\(\text{C}\)` do not share any common causes.
+
+---
+.note[Building block 5:] .b.slate[Immoralities]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb5-plot-4-1.svg" style="display: block; margin: auto;" /&gt;
+
+.b.pink[Proof:] Start with .it[marginalizing] dist. of `\(\text{A}\)` and `\(\text{C}\)`. Then BNF.
+
+`\(P(\text{A},\text{C}) = \sum_{\text{B}} P(\text{A},\text{B}, \text{C})\)`
+
+--
+
+`\(\color{#FFFFFF}{P(\text{A},\text{C})} = \sum_{\text{B}} P(\text{A})P(\text{C})P(\text{B}|\text{A},\text{C})\)`
+
+--
+
+`\(\color{#FFFFFF}{P(\text{A},\text{C})} = P(\text{A})P(\text{C}) \color{#FFA500}{\left(\sum_{\text{B}} P(\text{B}|\text{A},\text{C}) = 1\right)}\)`
+
+--
+
+`\(\color{#FFFFFF}{P(\text{A},\text{C})} = P(\text{A})P(\text{C})\)` `\(\quad\color{#e64173}{\checkmark}\)` .pink[(] `\(\color{#e64173}{\text{A} \ci \text{C}}\)` .pink[without conditioning)] 
+
+---
+.note[Building block 5:] .b.slate[Immoralities with conditions]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb5-plot-5-1.svg" style="display: block; margin: auto;" /&gt;
+
+.qa[Q] What happens when we condition on `\(\text{B}\)`?
+
+---
+count: false
+.note[Building block 5:] .b.slate[Immoralities with conditions]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb5-plot-6-1.svg" style="display: block; margin: auto;" /&gt;
+
+.qa[Q] What happens when we condition on `\(\text{B}\)`?
+&lt;br&gt;
+.qa[A] We .def.orange[unblock] (or .def.orange[open]) the previously blocked (closed) path.
+
+While `\(\text{A}\)` and `\(\text{C}\)` are independent, they are .orange[conditionally dependent].
+
+--
+
+.attn[Important:] When you condition on a collider, you open up the path.
+
+---
+.note[Building block 5:] .b.slate[Immoralities with conditions]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb5-plot-7-1.svg" style="display: block; margin: auto;" /&gt;
+
+.b.purple[Intuition:] `\(\text{B}\)` is a combination of `\(\text{A}\)` and `\(\text{C}\)`. 
+
+Conditioning on a value of `\(\text{B}\)` jointly constrains `\(\text{A}\)` and `\(\text{C}\)`—they can no longer move independently.
+
+--
+
+.ex[Example:] Let `\(\text{A}\)` take on `\(\{0,1\}\)` and `\(\text{C}\)` take on `\(\{0,1\}\)` (independently).
+
+Conditional on `\(\text{B}=1\)`, `\(\text{A}\)` and `\(\text{C}\)` are perfectly negatively correlated.
+
+---
+.note[Building block 5:] .b.slate[Immoralities with conditions]
+
+&lt;img src="07-dags-scribble_files/figure-html/bb5-plot-8-1.svg" style="display: block; margin: auto;" /&gt;
+
+In *MHE* vocabulary: The collider `\(\text{X}\)` is a *bad control*. 
+
+`\(\text{X}\)` is affected by both your treatment `\(\text{D}\)` and outcome `\(\text{Y}\)`.
+
+--
+
+.note[The result:] A spurious relationship between `\(\text{Y}\)` and `\(\text{D}\)`
+&lt;br&gt;Remember: they're actually (unconditionally) independent.
+
+--
+
+This spurious relationship is often called .def.purple[collider bias].
+
+---
+
+.ex[Example] Data from hospitalized patients: Mobility and respiratory health.
+
+--
+
+.qa[Q] How does this example relate to collider bias?
+--
+&lt;br&gt;
+.qa[A] Write out the DAG (+ think about selection into your sample)!
+
+---
+
+.ex[Example] Data from hospitalized patients: Mobility and respiratory health.
+
+Define `\(\text{M}\)` as .it[mobility],
+--
+ `\(\text{R}\)` as .it[respiratory health],
+--
+ and `\(\text{H}\)` as .it[hospitalized].
+
+--
+
+Suppose for the moment respiratory health and mobility 
+1. are .b[independent of each other] 
+2. each .b[cause hospitalization] (when they are too low)
+
+--
+
+&lt;img src="07-dags-scribble_files/figure-html/ex-collider-bias-1-1.svg" style="display: block; margin: auto;" /&gt;
+
+The implied DAG.
+
+---
+
+.ex[Example] Data from hospitalized patients: Mobility and respiratory health.
+
+Define `\(\text{M}\)` as .it[mobility], `\(\text{R}\)` as .it[respiratory health], and `\(\text{H}\)` as .it[hospitalized].
+
+Suppose for the moment respiratory health and mobility 
+1. are .b[independent of each other] 
+2. each .b[cause hospitalization] (when they are too low)
+
+&lt;img src="07-dags-scribble_files/figure-html/ex-collider-bias-1b-1.svg" style="display: block; margin: auto;" /&gt;
+
+If we .b.pink[do not condition on hospitalization], `\(\text{M}\rightarrow \text{H} \leftarrow \text{R}\)` is .b.grey[blocked].
+
+---
+
+.ex[Example] Data from hospitalized patients: Mobility and respiratory health.
+
+Define `\(\text{M}\)` as .it[mobility], `\(\text{R}\)` as .it[respiratory health], and `\(\text{H}\)` as .it[hospitalized].
+
+Suppose for the moment respiratory health and mobility 
+1. are .b[independent of each other] 
+2. each .b[cause hospitalization] (when they are too low)
+
+&lt;img src="07-dags-scribble_files/figure-html/ex-collider-bias-2-1.svg" style="display: block; margin: auto;" /&gt;
+
+Our data .b.grey[conditions on hospitalization], which .b.orange[opens] `\(\text{M}\rightarrow \text{H} \leftarrow \text{R}\)`.
+
+---
+class: clear, middle
+
+You can also see this example graphically...
+
+---
+.ex[Example] Data from hospitalized patients: Mobility and respiratory health.
+
+
+
+Let `\(\color{#314f4f}{M\sim \text{Uniform}(0,1)}\)`; `\(\color{#e64173}{R\sim \text{Uniform}(0,1)}\)`; `\(\color{#FFA500}{H=\mathbb{I}\{M+R&lt;1\}}\)`.
+
+--
+
+&lt;img src="07-dags-scribble_files/figure-html/ex-collider-plot1-1.svg" style="display: block; margin: auto;" /&gt;
+
+--
+
+.note[Without conditioning:] No relationship between mobility and resp. health.
+
+---
+.ex[Example] Data from hospitalized patients: Mobility and respiratory health.
+
+`\(\color{#314f4f}{M\sim \text{Uniform}(0,1)}\)`; `\(\color{#e64173}{R\sim \text{Uniform}(0,1)}\)`; `\(\color{#FFA500}{H=\mathbb{I}\{M+R&lt;1\}}\)`.
+
+&lt;img src="07-dags-scribble_files/figure-html/ex-collider-plot2-1.svg" style="display: block; margin: auto;" /&gt;
+
+.note[Recall:] Our sample excludes non-hospitalized individuals.
+
+---
+.ex[Example] Data from hospitalized patients: Mobility and respiratory health.
+
+`\(\color{#314f4f}{M\sim \text{Uniform}(0,1)}\)`; `\(\color{#e64173}{R\sim \text{Uniform}(0,1)}\)`; `\(\color{#FFA500}{H=\mathbb{I}\{M+R&lt;1\}}\)`.
+
+&lt;img src="07-dags-scribble_files/figure-html/ex-collider-plot3-1.svg" style="display: block; margin: auto;" /&gt;
+
+.note[Conditioning on] `\(\text{H}\)`.note[:] Mobility and respiratory health are associated.
+
+
+---
+class: clear, middle
+
+I like this example because it reminds us that .b.it[conditioning] occurs both .b[explicitly] (*e.g.*, "controlling for") and .b[implicitly] (*e.g.*, sample inclusion).
+
+This example of collider bias in hospitalization data comes from David L. Sackett's 1978 paper .it[[Bias in Analytic Research](https://www.jameslindlibrary.org/wp-data/uploads/2014/06/Sackett-1979-whole-article.pdf)]. 
+
+Sackett called it .def.slate[admission rate bias].
+
+.note[More generally:] You'll hear this called .def.slate[selection bias] or .def.slate[Berkson's paradox].
+
+---
+layout: false
+# DAGs
+## Blocked paths
+
+Let's formally define a blocked path (blocking is important).
+
+--
+
+A path between `\(\text{X}\)` and `\(\text{Y}\)` is .def.purple[blocked] by conditioning on a set of variables `\(\text{Z}\)` (possibly empty) if either of the following statements is true:
+
+1. On the path, there is a .b.pink[chain] `\(\left(\dots \rightarrow \text{W} \rightarrow \dots\right)\)` or a .b.pink[fork] `\(\left(\dots \leftarrow \text{W} \rightarrow \dots\right)\)`, and we condition on `\(\text{W}\)` `\(\left(\text{W}\in \text{Z}\right)\)`.
+
+1. On the path, there is a .b.orange[collider] `\(\left(\dots \rightarrow \text{W} \leftarrow \dots\right)\)`, and we .it[do not] condition on `\(\text{W}\)` `\(\left(\text{W}\not\in \text{Z}\right)\)` or any of its .b.orange[descendants] `\(\left(\text{de}(\text{W})\not\subseteq \text{Z}\right)\)`.
+
+--
+
+Association flows along unblocked paths.
+
+---
+name: d-sep
+# DAGs
+## d-separation and d-connected(-ness)
+
+Finally, we'll define whether nodes are .note[separated] or .note[connected] in DAGs.
+
+--
+
+.b.purple[Separation:] Nodes `\(\text{X}\)` and `\(\text{Y}\)` are .def.purple[d-separated] by a set of nodes `\(\text{Z}\)` if .purple[all paths] between `\(\text{X}\)` and `\(\text{Y}\)` .purple[are blocked] by `\(\text{Z}\)`.
+
+--
+
+Notation for d-separation: `\(\color{#6A5ACD}{\text{X} \ci_{G} \text{Y} \vert \text{Z}}\)`
+
+--
+
+.b.pink[Connection:] If there is at least .pink[one path] between `\(\text{X}\)` and `\(\text{Y}\)` that is .pink[unblocked], then `\(\text{X}\)` and `\(\text{Y}\)` are .def.pink[d-connected].
+
+---
+# DAGs
+## d-separation and causality
+
+.purple[d-separation] tells us that two nodes are .purple[not associated].
+
+--
+
+To measure the .pink[causal effect] of `\(\text{X}\)` on `\(\text{Y}\)`:
+&lt;br&gt;We must eliminate .pink[non-causal association].
+
+--
+
+Putting these ideas together, here is our .def.orange[criterion to isolate causal effects]:
+&gt; If we remove all edges flowing .b[out] of `\(\text{X}\)` (its .pink[causal effects]),
+&lt;br&gt;then `\(\text{X}\)` and `\(\text{Y}\)` should be .purple[d-separated].
+
+--
+
+This criterion ensures that we've closed the .def.slate[backdoor paths] that generate non-causal associations between `\(\text{X}\)` and `\(\text{Y}\)`.
+
+---
+layout: false
+class: inverse, middle
+name: ex
+# Examples
+
+---
+layout: true
+class: clear
+
+---
+.ex[Example 1:] .b[OVB]
+
+&lt;br&gt;
+
+.to-middle[
+&lt;img src="07-dags-scribble_files/figure-html/ex-1-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.qa[Q] OVB using DAG fundamentals: When can we isolate causal effects?
+
+---
+.ex[Example 2:] .b[Mediation]
+
+Here `\(\text{M}\)` is a .def.purple[mediator]: it .def.purple[mediates] the effect of `\(\text{D}\)` on `\(\text{Y}\)`.
+
+
+
+&lt;img src="07-dags-scribble_files/figure-html/ex-2-fig-1.svg" style="display: block; margin: auto;" /&gt;
+
+.qa[Q.sub[1]] What do we need to condition on to get the effect of `\(\text{D}\)` on `\(\text{Y}\)`?
+&lt;br&gt;
+.qa[Q.sub[2]] What happens if we condition on `\(\text{W}\)` and `\(\text{M}\)`?
+
+---
+.ex[Example 3:] .b[Partial mediation]
+
+&lt;br&gt;
+
+&lt;img src="07-dags-scribble_files/figure-html/ex-3-fig-1.svg" style="display: block; margin: auto;" /&gt;
+
+.qa[Q.sub[1]] What do we need to condition on to get the effect of `\(\text{D}\)` on `\(\text{Y}\)`?
+&lt;br&gt;
+.qa[Q.sub[2]] What happens if we condition on `\(\text{W}\)` and `\(\text{M}\)`?
+
+---
+.ex[Example 4:] .b[Non-mediator descendants] 
+
+&lt;br&gt;
+
+
+
+&lt;img src="07-dags-scribble_files/figure-html/ex-4-fig-1.svg" style="display: block; margin: auto;" /&gt;
+
+.qa[Q.sub[1]] What do we need to condition on to get the effect of `\(\text{D}\)` on `\(\text{Y}\)`?
+&lt;br&gt;
+.qa[Q.sub[2]] What happens if we condition on `\(\text{W}\)` and/or `\(\text{Z}\)`?
+
+
+---
+.ex[Example 5] .b[M-Bias]
+
+Notice that `\(\text{C}\)` here is .it[not] a result of treatment (could be "pre-treatment").
+
+
+
+&lt;img src="07-dags-scribble_files/figure-html/ex-5-fig-1.svg" style="display: block; margin: auto;" /&gt;
+
+.qa[Q.sub[1]] What do we need to condition on to get the effect of `\(\text{D}\)` on `\(\text{Y}\)`?
+&lt;br&gt;
+.qa[Q.sub[2]] What happens if we condition on `\(\text{W}\)` and/or `\(\text{Z}\)`?
+
+---
+class: middle
+
+.b[One more note:] 
+
+DAGs are often drawn without "noise variables" (disturbances).
+
+But they still exist—they're just "outside of the model."
+
+---
+layout: false
+name: limits
+# DAGs
+## Limitations
+
+So what can't DAGs do (well)?
+
+--
+
+- .def[Simultaneity:] Defined causality as unidirectional and prohibited cycles.
+
+--
+
+- .def[Dynamics:] You can sort of allow a variable to affect itself... `\(\text{Y}_{t=1}\rightarrow\text{Y}_{t=2}\)`.
+
+--
+
+- .def[Uncertainty:] DAGs are most useful when you can correctly draw them.
+
+--
+
+- .def[Make friends:] There's *a lot* of (angry/uncharitable) fighting about DAGs: 
+$$
+`\begin{align}
+  \text{Philosophy}\rightarrow \text{DAGs/Epidemiology} \leftarrow \text{Economics}
+\end{align}`
+$$
+
+---
+class: clear, middle
+
+.b.slate[Some of Judea Pearl's thoughts] ([source]((http://causality.cs.ucla.edu/blog/index.php/2014/10/27/are-economists-smarter-than-epidemiologists-comments-on-imbenss-recent-paper/))
+
+&gt; So, what is it about epidemiologists that drives them to seek the light of new tools, while economists (at least those in Imbens’s camp) seek comfort in partial blindness, while missing out on the causal revolution? Can economists do in their heads what epidemiologists observe in their graphs? Can they, for instance, identify the testable implications of their own assumptions? Can they decide whether the IV assumptions (i.e., exogeneity and exclusion) are satisfied in their own models of reality? Of course the can’t; such decisions are intractable to the graph-less mind. (I have challenged them repeatedly to these tasks, to the sound of a pin-drop silence)
+
+---
+class: clear, middle
+
+.b.slate[Pearl, continued] ([source]((http://causality.cs.ucla.edu/blog/index.php/2014/10/27/are-economists-smarter-than-epidemiologists-comments-on-imbenss-recent-paper/))
+
+&gt; Or, are problems in economics different from those in epidemiology? I have examined the structure of typical problems in the two fields, the number of variables involved, the types of data available, and the nature of the research questions. The problems are strikingly similar.
+
+&gt; I have only one explanation for the difference: Culture.
+
+&gt; The arrow-phobic culture started twenty years ago, when Imbens and Rubin (1995) decided that graphs “can easily lull the researcher into a false sense of confidence in the resulting causal conclusions,” and Paul Rosenbaum (1995) echoed with “No basis is given for believing” […] “that a certain mathematical operation, namely this wiping out of equations and fixing of variables, predicts a certain physical reality”
+
+---
+class: clear, middle
+
+.b.slate[Guido Imbens's response] ([source]((http://causality.cs.ucla.edu/blog/index.php/2014/10/27/are-economists-smarter-than-epidemiologists-comments-on-imbenss-recent-paper/))
+
+&gt; ... Judea and others using graphical models have developed a very interesting set of tools that researchers in many areas have found useful for their research. Other researchers, including myself, have found the potential outcome framework for causality associated with the work by Rubin... more useful for their work. In my view that difference of opinion does not reflect “economists being scared of graphs”, or “educational deficiencies” as Judea claims, merely legitimate heterogeneity in views arising from differences in preferences and problems. The “educational deficiencies” claim, and similarly the comment about my “vow” to avoid causal graphs is particularly ironic given that in the past Judea has presented, at my request, his work on causal graphs to participants in a graduate seminar I taught at Harvard University.
+
+---
+class: clear, middle, center
+
+.enormous[🤷]
+&lt;br&gt;
+.note[Suggestion:] Be nice to people and be intellectually honest.
+
+---
+name: sources
+layout: false
+
+# Sources
+
+## Thanks
+
+These notes rely heavily upon Brady Neal's [*Introduction to Causal Inference*](https://bradyneal.com/causal-inference-course). 
+
+I also borrow from Scott Cunningham's [*Causal Inference: The Mixtape*](https://www.scunning.com/mixtape.html).
+
+I found the [Sackett (1978)](https://catalogofbias.org/biases/collider-bias/) example on the ["Catalog of Bias"](https://catalogofbias.org/biases/collider-bias/) website.
+
+---
+exclude: false
+# Table of contents
+
+.col-left[
+.small[
+#### Admin
+- [Today and upcoming](#admin)
+
+#### Other
+- [Sources](#sources)
+
+#### DAGs
+- [What's a DAG?](#different)
+- [Example](#dag-ex)
+- [Graphs](#graphs)
+  - [Definition/undirected](#graphs)
+  - [Directed](#graphs-directed)
+  - [Cycles](#graphs-cycles)
+
+]
+]
+.col-right[
+.small[
+#### DAGs continued
+- [Origins](#dag-origins)
+  - [Local Markov](#local-markov)
+  - [Bayesian net. factorization](#dags-factor)
+  - [Dependence](#dags-dependence)
+  - [Causality](#dags-causlity)
+- [DAG building blocks](#building-blocks)
+  - [Chains](#blocks-chains)
+  - [Forks](#blocks-forks)
+  - [Immoralities/colliders](#blocks-colliders)
+- [d-separation](#d-sep)
+- [Examples](#ex)
+- [Limitations](#limits)
+]
+]
+
+---
+exclude: true
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

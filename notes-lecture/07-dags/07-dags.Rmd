@@ -57,7 +57,7 @@ options(knitr.table.format = "html")
 theme_set(theme_gray(base_size = 20))
 ```
 
-```{r, xaringan-extra, include = F, eval = T}
+```{r, xaringan-extra, include = F, eval = F}
 xaringanExtra::use_scribble(pen_color = red_pink)
 ```
 

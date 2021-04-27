@@ -149,10 +149,13 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 1. Examples
 
 **Note formats:** [.html](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/07-dags/07-dags.html) |
+ [.html (with scribble)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/07-dags/07-dags-scribble.html) |
 [.pdf](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/07-dags/07-dags.pdf) |
 [.pdf (no pauses)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/07-dags/07-dags-nopause.pdf) | 
 [.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/07-dags/07-dags.Rmd)
 <br>**Readings:** Brady Neal's book, chapters 1–3 (especially 2–3)
+
+*Extras:* [dagitty](http://dagitty.net) and [ggdag](https://ggdag.malco.io/index.html)
 
 **Lecture 08: Matching**
 

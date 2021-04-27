@@ -77,10 +77,16 @@ args = commandArgs(trailingOnly = T)
   close(con)
   # Render updated file to HTML
   rmarkdown::render(
-    paste0(name, ".Rmd"),
-    "xaringan::moon_reader"
+    input = paste0(name, ".Rmd"),
+    output_format = "xaringan::moon_reader",
+    output_file = paste0(name, "-scribble.html")
   )
-
+  # Change the xaringanExtra back to 'eval = F'
+  rmd_text[line_xe] = "```{r, xaringan-extra, include = F, eval = F}"
+  # Save the updated RMD document
+  con = file(paste0(name, ".Rmd"))
+  writeLines(rmd_text, con)
+  close(con)
 
 
 # Done.
