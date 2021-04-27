@@ -57,6 +57,10 @@ options(knitr.table.format = "html")
 theme_set(theme_gray(base_size = 20))
 ```
 
+```{r, xaringan-extra, include = F, eval = T}
+xaringanExtra::use_scribble(pen_color = red_pink)
+```
+
 ```{css, echo = F, eval = T}
 @media print {
   .has-continuation {

@@ -25,11 +25,15 @@ args = commandArgs(trailingOnly = T)
   rmd_text = name %>% paste0(".Rmd") %>% readLines()
   # Find the beginning of the 'pauses' chunk
   line_pause = rmd_text %>% str_detect("@media print") %>% which() %>% subtract(1)
+  # Find the beginning of the 'xaringanExtra' chunk
+  line_xe = rmd_text %>% str_detect("xaringan-extra") %>% which()
   
 
 # Step 1: No pauses ----------------------------------------------------------------------
   # Change the line to 'eval = F'
   rmd_text[line_pause] = "```{css, echo = F, eval = F}"
+  # Change the xaringanExtra to 'eval = F'
+  rmd_text[line_xe] = "```{r, xaringan-extra, include = F, eval = F}"
   # Save the updated RMD document
   con = file(paste0(name, ".Rmd"))
   writeLines(rmd_text, con)
@@ -65,5 +69,18 @@ args = commandArgs(trailingOnly = T)
     output = paste0(name, ".pdf"),
     timeout = 60
   )
+  # Change the xaringanExtra to 'eval = T'
+  rmd_text[line_xe] = "```{r, xaringan-extra, include = F, eval = T}"
+  # Save the updated RMD document
+  con = file(paste0(name, ".Rmd"))
+  writeLines(rmd_text, con)
+  close(con)
+  # Render updated file to HTML
+  rmarkdown::render(
+    paste0(name, ".Rmd"),
+    "xaringan::moon_reader"
+  )
+
+
 
 # Done.
