@@ -889,7 +889,7 @@ $$
 
 What have we learned so far? .grey-vlight[(Why should you care about this stuff?)]
 
-Local Markov and Bayesian Network Factorization tell us abound .attn[independencies] within a probability distribution implied by the given DAG.
+Local Markov and Bayesian Network Factorization tell us abount .attn[independencies] within a probability distribution implied by the given DAG.
 
 You're now able to say something about which variables are .pink.it[independent].
 
@@ -921,7 +921,7 @@ With the minimality assumption, we can learn both .pink[dependence] and .orange[
 name: dags-causlity
 ## Causality
 
-We need one last assumption move DAGs from .it[statical] to .it[causal] models.
+We need one last assumption move DAGs from .it[statistical] to .it[causal] models.
 
 --
 
@@ -1254,7 +1254,7 @@ The question is whether $\text{A}$ and $\text{C}$ are dependent:
 The answer .it[generally].super.pink[†] is .orange["yes"]: changes in $\text{A}$ typically cause changes in $\text{C}$. 
 
 .footnote[
-.pink[†] Section 2.2 of [Pearl, Glymour, and Jewell](http://bayes.cs.ucla.edu/PRIMER/) provides a "pathological" example of "intransitive dependence". It's basically when $\text{A}$ induces variation in $\text{B}$ that is not relevant to $\text{C}$' outcome.]
+.pink[†] Section 2.2 of [Pearl, Glymour, and Jewell](http://bayes.cs.ucla.edu/PRIMER/) provides a "pathological" example of "intransitive dependence". It's basically when $\text{A}$ induces variation in $\text{B}$ that is not relevant to $\text{C}$ outcome.]
 
 ---
 .note[Building block 3:] .b.slate[Chains]
@@ -2840,11 +2840,13 @@ coord_cartesian(
 
 .qa[Q.sub[1]] What do we need to condition on to get the effect of $\text{D}$ on $\text{Y}$?
 <br>
-.qa[Q.sub[2]] What happens if we condition on $\text{W}$ and/or $\text{Z}$?
+.qa[Q.sub[2]] What happens if we condition on $\text{C}$?
+<br>
+.qa[Q.sub[3]] What happens if we condition on $\text{C}$ along with $\text{B}$ and/or $\text{C}$?
 
 
 ---
-.ex[Example 5] .b[M-Bias]
+.ex[Example 5:] .b[M-Bias]
 
 Notice that $\text{C}$ here is .it[not] a result of treatment (could be "pre-treatment").
 
