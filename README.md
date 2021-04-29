@@ -157,12 +157,17 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 
 *Extras:* [dagitty](http://dagitty.net) and [ggdag](https://ggdag.malco.io/index.html)
 
-**Lecture 08: Matching**
+**[Lecture 08: Matching](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/08-matching/08-matching.html)**
 
 1. Matching estimators: Nearest neighbor and kernel
 1. Propensity-score methods: Regression control, treatment-effect heterogeneity, blocking, weighting, *doubly robust*
 
-**Readings:** MHE chapter 3 + C&T section 25.4
+**Note formats:** [.html](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/08-matching/08-matching.html) |
+[.html (with scribble)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/08-matching/08-matching-scribble.html) |
+[.pdf](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/08-matching/08-matching.pdf) |
+[.pdf (no pauses)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/08-matching/08-matching-nopause.pdf) | 
+[.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/08-matching/08-matching.Rmd)
+<br>**Readings:** MHE chapter 3 + C&T section 25.4
 
 **Lecture 09: Instrument Variables**
 
