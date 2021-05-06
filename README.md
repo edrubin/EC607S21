@@ -169,14 +169,18 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 [.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/08-matching/08-matching.Rmd)
 <br>**Readings:** MHE chapter 3 + C&T section 25.4
 
-**Lecture 09: Instrument Variables**
+**[Lecture 09: Instrument Variables](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv.html)**
 
 1. General research designs
 1. Instrumental variables
 1. Two-stage least squares
 1. Heterogeneous treatment effects and the LATE
 
-**Readings:** MHE chapter 4 + C&T sections 4.8–4.9
+**Note formats:** [.html](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv.html) |
+[.pdf](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv.pdf) |
+[.pdf (no pauses)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv-nopause.pdf) | 
+[.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv.Rmd)
+<br>**Readings:** MHE chapter 4 + C&T sections 4.8–4.9
 
 **Lecture 10: Regression Discontinuity**
 
