@@ -1,3 +1,4 @@
+# General extensions to ignore
 *.RData
 *.rdb
 *.DS_Store
@@ -6,3 +7,9 @@
 .Ruserdata
 .Rapp.history
 
+# Private course documents
+project/submissions*
+
+# Temporary holds
+problem-sets/002/002-solutions*
+problem-sets/002/002-problems.Rmd

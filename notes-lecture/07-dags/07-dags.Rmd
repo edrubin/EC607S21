@@ -2840,10 +2840,7 @@ coord_cartesian(
 
 .qa[Q.sub[1]] What do we need to condition on to get the effect of $\text{D}$ on $\text{Y}$?
 <br>
-.qa[Q.sub[2]] What happens if we condition on $\text{C}$?
-<br>
-.qa[Q.sub[3]] What happens if we condition on $\text{C}$ along with $\text{B}$ and/or $\text{C}$?
-
+.qa[Q.sub[2]] What happens if we condition on $\text{W}$ and/or $\text{Z}$?
 
 ---
 .ex[Example 5:] .b[M-Bias]
@@ -2917,7 +2914,9 @@ coord_cartesian(
 
 .qa[Q.sub[1]] What do we need to condition on to get the effect of $\text{D}$ on $\text{Y}$?
 <br>
-.qa[Q.sub[2]] What happens if we condition on $\text{W}$ and/or $\text{Z}$?
+.qa[Q.sub[2]] What happens if we condition on $\text{C}$?
+<br>
+.qa[Q.sub[3]] What happens if we condition on $\text{C}$ along with $\text{B}$ and/or $\text{C}$?
 
 ---
 class: middle

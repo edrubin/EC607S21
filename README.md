@@ -172,8 +172,8 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 **[Lecture 09: Instrument Variables](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv.html)**
 
 1. General research designs
-1. Instrumental variables
-1. Two-stage least squares
+1. Instrumental variables (IV)
+1. Two-stage least squares (2SLS)
 1. Heterogeneous treatment effects and the LATE
 
 **Note formats:** [.html](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv.html) |
@@ -288,7 +288,9 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 
 Problem sets combining econometric theory and R.
 
-**Problem set 1:** [problems](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/001/001-problems.pdf) | [solutions](problem-sets/001/solutions.md)
+**Problem set 1:** [problems](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/001/001-problems.pdf) | [solutions](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/001/001-solutions.pdf)
+
+**Problem set 2:** [problems](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/002/002-problems.pdf) | [solutions](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/002/solutions.md)
 
 ## Project
 

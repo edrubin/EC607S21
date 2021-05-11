@@ -187,6 +187,48 @@ A valid .attn[instrument] is a variable `\(\color{#e64173}{\text{Z}_{i}}\)` such
 , _i.e._, `\(\color{#e64173}{\text{Z}_{i}}\)` is excludable from equation `\((1)\)`.
 --
  .attn[(exclusion restriction)]
+
+---
+name: iv-dag
+## The DAG
+
+
+
+
+&lt;img src="09-iv-scribble_files/figure-html/dag-plot-1.svg" style="display: block; margin: auto;" /&gt;
+
+--
+
+.qa[Q] How does this DAG illustrate the requirements and identification of IV? 
+
+---
+## The DAG
+
+&lt;img src="09-iv-scribble_files/figure-html/dag-plot-2-1.svg" style="display: block; margin: auto;" /&gt;
+
+.qa[Relevance:] .b.purple[Z] causes an effect in .b.purple[D].
+
+---
+## The DAG
+
+&lt;img src="09-iv-scribble_files/figure-html/dag-plot-3-1.svg" style="display: block; margin: auto;" /&gt;
+
+.qa[Exclusion restriction:] 
+&lt;br&gt;  1\. .b.purple[Z] is .b.pink[exogenous] (not associated with) .b.purple[U] because
+--
+ .b.purple[D] is a collider.
+--
+&lt;br&gt;  .white[1\.] .it[I.e.], .b.purple[Z → D ← U] is closed without conditioning.  
+
+---
+## The DAG
+
+&lt;img src="09-iv-scribble_files/figure-html/dag-plot-4-1.svg" style="display: block; margin: auto;" /&gt;
+
+.qa[Exclusion restriction:] 
+&lt;br&gt;  1\. .b.purple[Z] is .b.pink[exogenous] (not associated with) .b.purple[U] because .b.purple[D] is a collider.
+&lt;br&gt;  2\. Also: .b.purple[Z] does not directly cause .b.purple[Y].
+
 ---
 name: example
 ## Example
@@ -198,6 +240,7 @@ $$
 \end{align}`
 $$
 OLS is likely biased.
+
 
 --
 
@@ -1198,6 +1241,7 @@ layout: false
 1. [Research designs](#designs)
 1. [Introduction](#intro)
 1. [Definition](#defined)
+1. [DAG](#iv-dag)
 1. [Example](#example)
 1. [IV estimator](#iv-estimator)
 ]

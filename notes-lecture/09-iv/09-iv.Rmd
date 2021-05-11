@@ -19,7 +19,7 @@ class: inverse, middle
 library(pacman)
 p_load(
   broom, tidyverse,
-  ggplot2, ggthemes, ggforce, ggridges,
+  ggplot2, ggthemes, ggforce, ggridges, ggdag, dagitty,
   latex2exp, viridis, extrafont, gridExtra,
   kableExtra, snakecase, janitor,
   data.table, dplyr,
@@ -309,6 +309,247 @@ A valid .attn[instrument] is a variable $\color{#e64173}{\text{Z}_{i}}$ such tha
 , _i.e._, $\color{#e64173}{\text{Z}_{i}}$ is excludable from equation $(1)$.
 --
  .attn[(exclusion restriction)]
+
+---
+name: iv-dag
+## The DAG
+
+
+```{r, dag-setup, include = F}
+# The full DAG
+dag = dagify(
+  Y ~ D,
+  Y ~ U,
+  D ~ U,
+  D ~ Z,
+  coords = tibble(
+    name = c("Y", "D", "U", "Z"),
+    x = c(1, 0, 1/2, -1),
+    y = c(0, 0, sqrt(3)/2,  0)
+  )
+)
+# Convert to data.table
+dag %<>% fortify() %T>% setDT()
+# Shorten segments
+mult = 0.2
+dag[, `:=`(
+  xa = x + (xend-x) * (mult),
+  ya = y + (yend-y) * (mult),
+  xb = x + (xend-x) * (1-mult),
+  yb = y + (yend-y) * (1-mult)
+)]
+# Add radius
+dag[, r := 1/7]
+```
+
+```{r, dag-plot, echo = F, fig.height = 4.5}
+# Plot the full DAG
+ggplot(
+  data = dag
+) +
+geom_circle(
+  aes(x0 = x, y0 = y, r = r, linetype = name == "U"),
+  fill = "white",
+  color = purple,
+) +
+geom_curve(
+  aes(x = xa, y = ya, xend = xb, yend = yb),
+  curvature = 0,
+  arrow = arrow(length = unit(0.07, "npc")),
+  color = purple,
+  size = 1.2,
+  lineend = "round"
+) +
+geom_text(
+  data = . %>% .[,.(name,x,y,xend=x,yend=y)] %>% unique(),
+  aes(x = x, y = y, label = name),
+  family = "Fira Sans Medium",
+  size = 10,
+  color = purple,
+  fontface = "bold"
+) +
+theme_void() +
+theme(
+  legend.position = "none",
+) +
+scale_linetype_manual(values = c("solid", "dashed")) +
+coord_cartesian(
+  xlim = dag[,range(x)] + dag[,range(x) %>% diff()] * c(-0.08, 0.08),
+  ylim = dag[,range(y)] + dag[,range(y) %>% diff()] * c(-0.08, 0.08)
+) +
+coord_equal()
+```
+
+--
+
+.qa[Q] How does this DAG illustrate the requirements and identification of IV? 
+
+---
+## The DAG
+
+```{r, dag-plot-2, echo = F, fig.height = 4.5}
+# Plot the full DAG
+ggplot(
+  data = dag
+) +
+geom_circle(
+  aes(x0 = x, y0 = y, r = r, linetype = name == "U"),
+  fill = "white",
+  color = purple,
+) +
+geom_curve(
+  data = . %>% .[!(name == "Z" & to == "D")],
+  aes(x = xa, y = ya, xend = xb, yend = yb),
+  curvature = 0,
+  arrow = arrow(length = unit(0.07, "npc")),
+  color = purple,
+  size = 1.2,
+  lineend = "round"
+) +
+geom_curve(
+  data = . %>% .[name == "Z" & to == "D"],
+  aes(x = xa, y = ya, xend = xb, yend = yb),
+  curvature = 0,
+  arrow = arrow(length = unit(0.07, "npc")),
+  color = red_pink,
+  size = 1.2,
+  lineend = "round"
+) +
+geom_text(
+  data = . %>% .[,.(name,x,y,xend=x,yend=y)] %>% unique(),
+  aes(x = x, y = y, label = name),
+  family = "Fira Sans Medium",
+  size = 10,
+  color = purple,
+  fontface = "bold"
+) +
+theme_void() +
+theme(
+  legend.position = "none",
+) +
+scale_linetype_manual(values = c("solid", "dashed")) +
+coord_cartesian(
+  xlim = dag[,range(x)] + dag[,range(x) %>% diff()] * c(-0.08, 0.08),
+  ylim = dag[,range(y)] + dag[,range(y) %>% diff()] * c(-0.08, 0.08)
+) +
+coord_equal()
+```
+
+.qa[Relevance:] .b.purple[Z] causes an effect in .b.purple[D].
+
+---
+## The DAG
+
+```{r, dag-plot-3, echo = F, fig.height = 4.5}
+# Plot the full DAG
+ggplot(
+  data = dag
+) +
+geom_circle(
+  aes(x0 = x, y0 = y, r = r, linetype = name == "U"),
+  fill = "white",
+  color = purple,
+) +
+geom_curve(
+  data = . %>% .[!((name == "Z" & to == "D") | (name == "U" & to == "D"))],
+  aes(x = xa, y = ya, xend = xb, yend = yb),
+  curvature = 0,
+  arrow = arrow(length = unit(0.07, "npc")),
+  color = purple,
+  size = 1.2,
+  lineend = "round"
+) +
+geom_curve(
+  data = . %>% .[(name == "Z" & to == "D") | (name == "U" & to == "D")],
+  aes(x = xa, y = ya, xend = xb, yend = yb),
+  curvature = 0,
+  arrow = arrow(length = unit(0.07, "npc")),
+  color = red_pink,
+  size = 1.2,
+  lineend = "round"
+) +
+geom_text(
+  data = . %>% .[,.(name,x,y,xend=x,yend=y)] %>% unique(),
+  aes(x = x, y = y, label = name),
+  family = "Fira Sans Medium",
+  size = 10,
+  color = purple,
+  fontface = "bold"
+) +
+theme_void() +
+theme(
+  legend.position = "none",
+) +
+scale_linetype_manual(values = c("solid", "dashed")) +
+coord_cartesian(
+  xlim = dag[,range(x)] + dag[,range(x) %>% diff()] * c(-0.08, 0.08),
+  ylim = dag[,range(y)] + dag[,range(y) %>% diff()] * c(-0.08, 0.08)
+) +
+coord_equal()
+```
+
+.qa[Exclusion restriction:] 
+<br>  1\. .b.purple[Z] is .b.pink[exogenous] (not associated with) .b.purple[U] because
+--
+ .b.purple[D] is a collider.
+--
+<br>  .white[1\.] .it[I.e.], .b.purple[Z → D ← U] is closed without conditioning.  
+
+---
+## The DAG
+
+```{r, dag-plot-4, echo = F, fig.height = 4.5}
+# Plot the full DAG
+ggplot(
+  data = dag
+) +
+geom_circle(
+  aes(x0 = x, y0 = y, r = r, linetype = name == "U"),
+  fill = "white",
+  color = purple,
+) +
+geom_curve(
+  data = . %>% .[!(name == "Z" & to == "D")],
+  aes(x = xa, y = ya, xend = xb, yend = yb),
+  curvature = 0,
+  arrow = arrow(length = unit(0.07, "npc")),
+  color = purple,
+  size = 1.2,
+  lineend = "round"
+) +
+geom_curve(
+  data = . %>% .[name == "Z" & to == "D"],
+  aes(x = xa, y = ya, xend = xb, yend = yb),
+  curvature = 0,
+  arrow = arrow(length = unit(0.07, "npc")),
+  color = red_pink,
+  size = 1.2,
+  lineend = "round"
+) +
+geom_text(
+  data = . %>% .[,.(name,x,y,xend=x,yend=y)] %>% unique(),
+  aes(x = x, y = y, label = name),
+  family = "Fira Sans Medium",
+  size = 10,
+  color = purple,
+  fontface = "bold"
+) +
+theme_void() +
+theme(
+  legend.position = "none",
+) +
+scale_linetype_manual(values = c("solid", "dashed")) +
+coord_cartesian(
+  xlim = dag[,range(x)] + dag[,range(x) %>% diff()] * c(-0.08, 0.08),
+  ylim = dag[,range(y)] + dag[,range(y) %>% diff()] * c(-0.08, 0.08)
+) +
+coord_equal()
+```
+
+.qa[Exclusion restriction:] 
+<br>  1\. .b.purple[Z] is .b.pink[exogenous] (not associated with) .b.purple[U] because .b.purple[D] is a collider.
+<br>  2\. Also: .b.purple[Z] does not directly cause .b.purple[Y].
+
 ---
 name: example
 ## Example
@@ -320,6 +561,7 @@ $$
 \end{align}
 $$
 OLS is likely biased.
+
 
 --
 
@@ -1396,6 +1638,7 @@ layout: false
 1. [Research designs](#designs)
 1. [Introduction](#intro)
 1. [Definition](#defined)
+1. [DAG](#iv-dag)
 1. [Example](#example)
 1. [IV estimator](#iv-estimator)
 ]

@@ -2,7 +2,7 @@
 title: "Instrumental Variables"
 subtitle: "Practice Problems"
 author: "Edward Rubin"
-date: "Spring 2021"
+date: ""
 output:
   xaringan::moon_reader:
     css: ['default', 'metropolis', 'metropolis-fonts', 'my-css.css']
@@ -155,22 +155,17 @@ $$
   \def\ci{\perp\mkern-10mu\perp}
 \end{align}
 $$
+
 ---
 # IV + 2SLS
 ## Practice problems
 
-1. Generate a dataset such that (.hi-slate[1]) treatment is correlated with the disturbance and (.hi-slate[2]) there a valid instrument.
+1. Generate a dataset such that (.hi-slate[A]) treatment is correlated with the disturbance and (.hi-slate[B]) there a valid instrument.
 
 2. Estimate the treatment effect using 2SLS—both through `iv_robust()` and through two stages of `lm()`.
 
 3. What does IV recover when the treatment effect is heterogeneous? Show analytically and/or through your numerical example.
 
-4. Set up (or at least outline) a data-generating process with compliers, always takers, never takers, and defiers.
+4. Set up (or at least outline) a data-generating process with compliers, always takers, never takers, and defiers. Allow $\tau_i$ to vary.
 
-
----
-exclude: true
-
-```{r, generate pdfs, include = F, eval = T}
-system("decktape remark 08IV_Practice.html 08IV_Practice.pdf --chrome-arg=--allow-file-access-from-files")
-```
+5. How much of the information on compliers, always-takers, never-takers, and defiers can you incorporate into a DAG? Explain.

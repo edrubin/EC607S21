@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Instrumental Variables</title>
     <meta charset="utf-8" />
     <meta name="author" content="Edward Rubin" />
-    <link href="08-iv-practice_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="08-iv-practice_files/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
-    <link href="08-iv-practice_files/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <script src="09-iv-practice_files/header-attrs-2.6/header-attrs.js"></script>
+    <link href="09-iv-practice_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="09-iv-practice_files/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="09-iv-practice_files/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
     <link rel="stylesheet" href="my-css.css" type="text/css" />
   </head>
   <body>
@@ -16,7 +17,6 @@ class: center, middle, inverse, title-slide
 # Instrumental Variables
 ## Practice Problems
 ### Edward Rubin
-### Spring 2020
 
 ---
 
@@ -29,21 +29,20 @@ $$
   \def\ci{\perp\mkern-10mu\perp}
 \end{align}`
 $$
+
 ---
 # IV + 2SLS
 ## Practice problems
 
-1. Generate a dataset such that (.hi-slate[1]) treatment is correlated with the disturbance and (.hi-slate[2]) there a valid instrument.
+1. Generate a dataset such that (.hi-slate[A]) treatment is correlated with the disturbance and (.hi-slate[B]) there a valid instrument.
 
 2. Estimate the treatment effect using 2SLS—both through `iv_robust()` and through two stages of `lm()`.
 
 3. What does IV recover when the treatment effect is heterogeneous? Show analytically and/or through your numerical example.
 
-4. Set up (or at least outline) a data-generating process with compliers, always takers, never takers, and defiers.
+4. Set up (or at least outline) a data-generating process with compliers, always takers, never takers, and defiers. Allow `\(\tau_i\)` to vary.
 
-
----
-exclude: true
+5. How much of the information on compliers, always-takers, never-takers, and defiers can you incorporate into a DAG? Explain.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -91,6 +90,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -108,17 +133,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {
