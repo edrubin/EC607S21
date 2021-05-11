@@ -176,7 +176,7 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 1. Two-stage least squares (2SLS)
 1. Heterogeneous treatment effects and the LATE
 
-**Note formats:** [.html](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv.html) |
+**Note formats:** [.html](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv.html) | [.html (with scribble)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv-scribble.html) |
 [.pdf](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv.pdf) |
 [.pdf (no pauses)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv-nopause.pdf) | 
 [.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv.Rmd)
