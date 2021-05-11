@@ -316,7 +316,7 @@ Step 3: **Presentation of project pitch**
 
 1. Inference and simulation
 1. Matching
-1. Instrumental variables
+1. [Instrumental variables](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv-practice.pdf)
 1. Regression discontinuity
 1. Inference: Clustering and resampling
 
