@@ -493,7 +493,7 @@ coord_equal()
 --
  .b.purple[D] is a collider.
 --
-<br>  .white[1\.] .it[I.e.], .b.purple[Z → D ← U] is closed without conditioning.  
+<br>  .white[1\.] .it[I.e.], .b.purple[Z → D ← U → Y] is closed without conditioning on (unobservable) .b.purple[U].  
 
 ---
 ## The DAG
