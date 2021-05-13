@@ -1,6 +1,13 @@
 
+Imbens, 2020
+https://arxiv.org/abs/1907.07271
+https://www.aeaweb.org/articles?id=10.1257/jel.20191597
+
 Rubin, 1974
 https://www.fsb.muohio.edu/lij14/420_paper_Rubin74.pdf
 
 Sekhon, 2007
 http://sekhon.berkeley.edu/papers/SekhonOxfordHandbook.pdf
+
+Thistlewaite and Campbell, 1960
+https://obsstudies.org/wp-content/uploads/2017/01/regression_discontinuity_all_comments-1.pdf

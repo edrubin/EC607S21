@@ -176,19 +176,25 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 1. Two-stage least squares (2SLS)
 1. Heterogeneous treatment effects and the LATE
 
-**Note formats:** [.html](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv.html) | [.html (with scribble)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv-scribble.html) |
+**Note formats:** [.html](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv.html) | 
+[.html (with scribble)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv-scribble.html) |
 [.pdf](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv.pdf) |
 [.pdf (no pauses)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv-nopause.pdf) | 
 [.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/09-iv/09-iv.Rmd)
 <br>**Readings:** MHE chapter 4 + C&T sections 4.8–4.9
 
-**Lecture 10: Regression Discontinuity**
+**[Lecture 10: Regression Discontinuity](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/10-rd/10-rd.html)**
 
 1. Sharp regression discontinuities
 1. Fuzzy regression discontinuities
 1. Graphical analyses
 
-**Readings:** MHE chapter 6 + C&T sections 25.6
+**Note formats:** [.html](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/10-rd/10-rd.html) |
+[.html (with scribble)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/10-rd/10-rd-scribble.html) |
+[.pdf](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/10-rd/10-rd.pdf) |
+[.pdf (no pauses)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/10-rd/10-rd-nopause.pdf) | 
+[.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/10-rd/10-rd.Rmd)
+<br>**Readings:** MHE chapter 6 + C&T sections 25.6
 
 **Lecture 11: Inference: Clustering**
 
