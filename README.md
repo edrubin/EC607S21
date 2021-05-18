@@ -196,13 +196,18 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 [.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/10-rd/10-rd.Rmd)
 <br>**Readings:** MHE chapter 6 + C&T sections 25.6
 
-**Lecture 11: Inference: Clustering**
+**[Lecture 11: Inference: Clustering](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/11-clustering/11-clustering.html)**
 
 1. General inference
 1. Moulton
 1. Cluster-robust standard errors
 
-**Readings:** MHE chapter 8
+**Note formats:** [.html](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/11-clustering/11-clustering.html) |
+[.html (with scribble)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/11-clustering/11-clustering-scribble.html) |
+[.pdf](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/11-clustering/11-clustering.pdf) |
+[.pdf (no pauses)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/11-clustering/11-clustering-nopause.pdf) | 
+[.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/11-clustering/11-clustering.Rmd)
+<br>**Readings:** MHE chapter 8
 
 **Lecture 12: Inference: Resampling and Randomization**
 
