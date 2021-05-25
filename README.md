@@ -209,14 +209,18 @@ The content of the lectures mainly follows *MHE* and [Michael Anderson](https://
 [.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/11-clustering/11-clustering.Rmd)
 <br>**Readings:** MHE chapter 8
 
-**Lecture 12: Inference: Resampling and Randomization**
+**[Lecture 12: Inference: Resampling and Randomization](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/12-randomization/12-randomization.html)**
 
 1. Resampling
 1. The bootstrap
 1. Permutation tests (Fisher)
 1. Randomization inference (Neyman-Pearson)
 
-**Readings:** MHE chapter 6 + C&T sections 25.6
+**Note formats:** [.html](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/12-randomization/12-randomization.html) |
+[.pdf](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/12-randomization/12-randomization.pdf) |
+[.pdf (no pauses)](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/12-randomization/12-randomization-nopause.pdf) | 
+[.Rmd](https://raw.githack.com/edrubin/EC607S21/master/notes-lecture/12-randomization/12-randomization.Rmd)
+<br>**Readings:** MHE chapter 6 + C&T sections 25.6
 
 **Lecture 13: Machine learning (in one lecture)**
 
