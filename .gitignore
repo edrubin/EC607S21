@@ -1,6 +1,7 @@
 # General extensions to ignore
 *.RData
 *.rdb
+*.rdx
 *.DS_Store
 .Rproj.user
 .Rhistory
