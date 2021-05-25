@@ -301,13 +301,13 @@ Problem sets combining econometric theory and R.
 
 **Problem set 1:** 
 [problems](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/001/001-problems.pdf) | 
-<!-- [solutions](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/001/solutions.md) -->
 [solutions](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/001/001-solutions.pdf)
+<!-- [solutions](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/001/solutions.md) -->
 
 **Problem set 2:** 
 [problems](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/002/002-problems.pdf) | 
-<!-- [solutions](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/002/solutions.md) -->
 [solutions](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/002/002-solutions.pdf)
+<!-- [solutions](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/002/solutions.md) -->
 
 **Problem set 3:** 
 [problems](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/003/003-problems.pdf) | 
@@ -327,10 +327,6 @@ Step 1: **Research question (causal relationship of interest) and motivation.**
 **Due:** [April 15 on Canvas](https://canvas.uoregon.edu/courses/176672/assignments/1099153?module_item_id=3139117)
 
 Step 2: **Project proposal**
-
-**Due:** TBA, ([Canvas](https://canvas.uoregon.edu/courses/176672))
-
-Step 3: **Presentation of project pitch**
 
 **Due:** TBA, ([Canvas](https://canvas.uoregon.edu/courses/176672))
 
