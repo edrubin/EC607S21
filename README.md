@@ -315,13 +315,12 @@ Problem sets combining econometric theory and R.
 
 **Problem set 3:** 
 [problems](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/003/003-problems.pdf) | 
-[solutions](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/003/solutions.md)
-<!-- [solutions](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/003/003-solutions.pdf) -->
-
+[solutions](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/003/solutions.md) |
 [dataset 1](https://raw.githack.com/edrubin/EC607S20/master/problem-sets/003/data/2miledata.dta) |
 [dataset 2](https://raw.githack.com/edrubin/EC607S20/master/problem-sets/003/data/allcovariates.dta) |
 [dataset 3](https://raw.githack.com/edrubin/EC607S20/master/problem-sets/003/data/allsites.dta) | 
 [more data](https://raw.githack.com/edrubin/EC607S20/master/problem-sets/003/data/sitecovariates.dta) 
+<!-- [solutions](https://raw.githack.com/edrubin/EC607S21/master/problem-sets/003/003-solutions.pdf) -->
 
 ## Project
 
