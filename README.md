@@ -339,7 +339,7 @@ Step 1: **Research question (causal relationship of interest) and motivation.**
 
 **Due:** [April 15 on Canvas](https://canvas.uoregon.edu/courses/176672/assignments/1099153?module_item_id=3139117)
 
-Step 2: **Project proposal**
+Step 2: [**Project proposal**](project/step-02.md)
 
 **Due:** TBA, ([Canvas](https://canvas.uoregon.edu/courses/176672))
 
